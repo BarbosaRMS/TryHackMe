@@ -80,7 +80,7 @@ smb: \> ls
 smb: \> 
 
 ```
-Hmm, let's download these files and analyse them. 
+Hmm, let's download these files and analyze them. 
 First one, Alice-White-Rabbit.jpg: It's a jpeg file, we can use steghide:
 ```
 $ steghide extract -sf Alice-White-Rabbit.jpg 
