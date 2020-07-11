@@ -1,4 +1,4 @@
-# TryHackMe Blog Room
+# TryHackMe Blog Room - www.tryhackme.com/room/blog
 For my run, the IP address of the virtual machine was 10.10.20.26. Remember to change it where necessary when reading this writeup!
 ```
 $ export IP=10.10.20.26
