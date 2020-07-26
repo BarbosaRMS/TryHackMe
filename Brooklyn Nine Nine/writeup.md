@@ -119,7 +119,7 @@ Successfully cracked file with password: <REDACTED>
 Tried 20### passwords
 Your file has been written to: brooklyn99.jpg.out
 ```
-Ok, information extracted from the file. What it is?
+Ok, information extracted from the file. What is it?
 
 ```
 $ cat brooklyn99.jpg.out 
