@@ -127,16 +127,14 @@ Let's do it in parts:
 	Now checking if it worked on fpassword.php?id=5 ... and IT DID!
 
 Alright, we do have all the 5 flags now... the dump.txt file said that we would get the password by concatenating all the passwords found above... so there are two ways this could work: literally concatenate all the flags, to get: 
-
-	```
-	THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}
-	```
+```
+THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}
+```
 
 or we could try to join only the inner parts:
-
-	```
-	THM{REDACTEDREDACTEDREDACTEDREDACTEDREDACTED}
-	```
+```
+THM{REDACTEDREDACTEDREDACTEDREDACTEDREDACTED}
+```
 
 turns out that trying the first one worked just fine. :)
 
