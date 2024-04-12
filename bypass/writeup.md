@@ -81,6 +81,7 @@ Let's do it in parts:
 	`send(IP(dst="10.10.173.248")/UDP(sport=5000))`
 	pay attention that it requires the SOURCE port to be 5000, not the DESTINATION port!
 	With this, we can do as it says and check on the browser the endpoint cctv.thm/fpassword.php?id=1 and we do see that we have our flag!
+
 	<img src="writeup_img2.png">
 
 2) "Make a TCP request to fpassword.php?id=2 with user-agent set as 'I am Steve Friend'."
@@ -110,14 +111,20 @@ Let's do it in parts:
 	Now checking if it worked on fpassword.php?id=5 ... and IT DID!
 
 Alright, we do have all the 5 flags now... the dump.txt file said that we would get the password by concatenating all the passwords found above... so there are two ways this could work: literally concatenate all the flags, to get: 
+
 	`THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}`
+
 or we could try to join only the inner parts:
+
 	`THM{REDACTEDREDACTEDREDACTEDREDACTEDREDACTED}`
+
 turns out that trying the first one worked just fine. :)
 
 Now we have our second login page, and we already know what to fill on the username: the computer's hostname!... that we don't know yet. But, they gave us a hint: "I have enabled a wholly sandboxed login environment with no connection to the database and **no possibility of command execution.**"
+
 <img src="writeup_img5.png">
-There was this video from John Hammond, where he explains how he passed OSCP... and he said something like "Everything that is on the box is there **FOR A REASON**" (and that's a very good thing to remember when working on challenges and ctfs). Here we are, with a login page with username and password... and a date? In a listbox? Hmm...
+
+There was this video from John Hammond, where he explains how he passed OSCP... and he said something like "Everything that is on the box is there **FOR A REASON**" (and that's a very good thing to remember when working on challenges and ctfs); Here we are, with a login page with username and password... and a date? In a listbox? Hmm...
 If we check the html, we do see that it is indeed a list, but with only one option, and below there is a javascript that makes it submit the page when there is a change on the listbox... and if we keep reloading the page, we note that the minutes/seconds keep changing... maybe it pulls out the date from the 'date' command?
 
 So let's try something... open up the developer tools (F12), modify the html to add a **new** <option> there
@@ -126,7 +133,9 @@ So let's try something... open up the developer tools (F12), modify the html to 
 ```
 
 Now update the page, change the option to 'ls' and... we have our directory list! IT WERKS!
+
 <img src="writeup_img6.png">
+
 Note that is is Remote Code Execution, and if we wanted we could get shell access on the box. But for this room, this is not needed.
 
 Create a new option for lsb_release, so we can answer the question on the room...
@@ -140,5 +149,6 @@ and finally we get the hostname of the machine
 ```
 
 With the hostname, now we know the username for our login page, and finally we get the last flag!
+
 <img src="writeup_img7.png">
 
