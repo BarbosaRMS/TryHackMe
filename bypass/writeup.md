@@ -8,7 +8,9 @@
 We start by doing basic enumeration on the target machine. To make things smoother that it works fine on the browser, add an entry "cctv.thm" on your hosts file (/etc/hosts on Linux, c:\Windows\System32\Drivers\etc\hosts on Windows).
 
 First, what are the services running on the server?
-> nmap -sV -sC -p-65535 cctv.thm
+```bash
+ nmap -sV -sC -p-65535 cctv.thm
+```
 
 ```
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-04-12 11:47 -03
