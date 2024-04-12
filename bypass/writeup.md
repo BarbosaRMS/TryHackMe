@@ -76,9 +76,21 @@ Alright, so we have a plan now. There are 5 steps to recover the password, and a
 
 Let's do it in parts:
 1) "Make a UDP request to the machine with source port number 5000."
-	There are some ways to work with packets using different languages... In my case, since i was researching a tool precisely for this last night, I've decided to use Scapy: It's a python tool that allows us to create custom packets with (some) ease. just do a `pip install scapy` and... now, the bothersome part: for me it needed sudo to send the packets. There are some workarounds for this on the interwebs, but i just went with `sudo $(which scapy)` and it worked for me. 
+	There are some ways to work with packets using different languages... In my case, since i was researching a tool precisely for this last night, I've decided to use Scapy: It's a python tool that allows us to create custom packets with (some) ease. just do a 
+	```bash
+	pip install scapy
+	```
+	and... now, the bothersome part: for me it needed sudo to send the packets. There are some workarounds for this on the interwebs, but i just went with 
+	```bash
+	sudo $(which scapy)
+	```
+	 and it worked for me. 
 	Now, on Scapy shell, we create our packet: (remember to change the ip for your instance)
-	`send(IP(dst="10.10.173.248")/UDP(sport=5000))`
+
+	```python
+	send(IP(dst="10.10.173.248")/UDP(sport=5000))
+	```
+
 	pay attention that it requires the SOURCE port to be 5000, not the DESTINATION port!
 	With this, we can do as it says and check on the browser the endpoint cctv.thm/fpassword.php?id=1 and we do see that we have our flag!
 
@@ -96,13 +108,17 @@ Let's do it in parts:
 
 3) "Send a ping packet to the machine appearing as Mozilla browser (Hint: packet content with user agent set as Mozilla)"
 	We can use Scapy here again. If we look for ping on Scapy's documentation, there is a one-liner there that we can use:
-	`ans, unans = sr(IP(dst="10.10.173.248")/ICMP()/Raw(load="User-Agent: Mozilla/5.0"), timeout=3)`
+	```python
+	ans, unans = sr(IP(dst="10.10.173.248")/ICMP()/Raw(load="User-Agent: Mozilla/5.0"), timeout=3)
+	```
 	note that we had to add the User-Agent on the raw data for the packet for it to work!
 	And we just check now fpassword.php/id=3 and the flag is there!
 
 4) "Attempt to login to the FTP server with content containing the word 'user' in it."
 	This is the easiest one, we can just try to login on ftp with the user as 'user'
-	`ftp user@cctv.thm`
+	```bash
+	ftp user@cctv.thm
+	```
 	and BOOM! check fpassword.php?id=4 to find our flag!
 
 5) "Send TCP request to flagger.cgi endpoint with a host header containing more than 50 characters."
@@ -112,11 +128,15 @@ Let's do it in parts:
 
 Alright, we do have all the 5 flags now... the dump.txt file said that we would get the password by concatenating all the passwords found above... so there are two ways this could work: literally concatenate all the flags, to get: 
 
-	`THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}`
+	```
+	THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}THM{REDACTED}
+	```
 
 or we could try to join only the inner parts:
 
-	`THM{REDACTEDREDACTEDREDACTEDREDACTEDREDACTED}`
+	```
+	THM{REDACTEDREDACTEDREDACTEDREDACTEDREDACTED}
+	```
 
 turns out that trying the first one worked just fine. :)
 
@@ -155,4 +175,3 @@ and finally we get the hostname of the machine
 With the hostname, now we know the username for our login page, and finally we get the last flag!
 
 <img src="writeup_img7.png">
-
