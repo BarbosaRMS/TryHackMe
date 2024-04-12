@@ -154,7 +154,7 @@ So let's try something... open up the developer tools (F12), modify the html to 
 
 so it looks like this...
 
-<img src="writeup_extra1.png>
+<img src="writeup_extra1.png">
 
 Now update the page, change the option to 'ls' and... we have our directory list! IT WERKS!
 
