@@ -149,7 +149,7 @@ Now we have our second login page, and we already know what to fill on the usern
 
 <img src="writeup_img5.png">
 
-There was this video from John Hammond, where he explains how he passed OSCP... and he said something like "Everything that is on the box is there **FOR A REASON**" (and that's a very good thing to remember when working on challenges and ctfs); Here we are, with a login page with username and password... and a date? In a listbox? Hmm...
+There was this video from John Hammond, where he explains how he got his OSCP... and he said something like "Everything that is on the box is there **FOR A REASON**" (and that's a very good thing to remember when working on challenges and ctfs); Here we are, with a login page with username and password... and a date? In a listbox? Hmm...
 If we check the html, we do see that it is indeed a list, but with only one option, and below there is a javascript that makes it submit the page when there is a change on the listbox... and if we keep reloading the page, we note that the minutes/seconds keep changing... maybe it pulls out the date from the 'date' command?
 
 So let's try something... open up the developer tools (F12), modify the html to add a **new** option there
