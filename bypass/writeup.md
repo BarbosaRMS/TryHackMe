@@ -1,4 +1,9 @@
 # TryHackMe Bypass
+### [https://tryhackme.com/r/room/bypass](https://tryhackme.com/r/room/bypass)
+### Room by TryHackMe and 1337rce
+### Writeup by BarbosaRMS
+
+---
 
 We start by doing basic enumeration on the target machine. To make things smoother that it works fine on the browser, add an entry "cctv.thm" on your hosts file (/etc/hosts on Linux, c:\Windows\System32\Drivers\etc\hosts on Windows).
 
